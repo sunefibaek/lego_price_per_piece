@@ -2,7 +2,13 @@ import streamlit as st
 import pandas as pd    
 import numpy as np    
 import io  
-  
+import requests
+
+def get_public_ip():
+    response = requests.get('https://api.ipify.org')
+    ip_address = response.text
+    return ip_address
+
 def create_dataframe():    
     data = {    
         'col1': np.random.rand(8),    
@@ -14,7 +20,7 @@ def create_dataframe():
     return df    
   
 df = create_dataframe()    
-  
+
 # Add a multiselect dropdown to select which columns are visible    
 columns = st.multiselect("Select the columns to display", df.columns.tolist(), default=df.columns.tolist())   
   
@@ -33,5 +39,6 @@ if st.button('Convert to Excel'):
         file_name='dataframe.xlsx',    
         mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'    
     )   
-  
+st.write(get_public_ip())
+
 st.dataframe(df[columns])    
