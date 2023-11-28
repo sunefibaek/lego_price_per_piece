@@ -29,3 +29,6 @@ if st.button('Convert to Excel'):
         file_name='dataframe.xlsx',  
         mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'  
     ) 
+# Add a multiselect dropdown to select which columns are visible  
+columns = st.multiselect("Select the columns to display", df.columns.tolist(), default=df.columns.tolist())  
+st.dataframe(df[columns])  
