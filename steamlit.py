@@ -19,7 +19,6 @@ def create_dataframe():
     df = pd.DataFrame(data)
     return df
 
-# Print the DataFrame
-
-# print("Hello, World!")
+df = create_dataframe()
+st.write('DataFrame:')
 st.dataframe(df)
